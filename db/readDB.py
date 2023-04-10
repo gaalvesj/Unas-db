@@ -5,8 +5,7 @@ conn = sqlite3.connect('/Users/gabrielalves/projetos-pessoais/Unas-db/unas_banco
 cursor = conn.cursor()
 
 # Executar uma consulta SQL para selecionar todos os dados da tabela
-cursor.execute("SELECT COUNT(*) FROM Tabela_UNAS ")
-
+cursor.execute("SELECT COUNT(*) FROM Tabela_UNAS WHERE projeto = 'CEI PAULO FREIRE'")
 # Recuperar e imprimir todos os resultados da consulta
 rows = cursor.fetchall()
 for row in rows:
