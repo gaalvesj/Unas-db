@@ -29,7 +29,7 @@ def get_cca():
     cca = []
     for row in rows:
         if nome_termo is None or nome_termo.lower() in row[1].lower():
-            cca.append({'id': row[0], 'nome': row[1], 'data_nascimento': row[2]})
+            cca.append({'id': row[0], 'projeto': row[1], 'nome': row[2]})
 
     return jsonify(cca)
 
