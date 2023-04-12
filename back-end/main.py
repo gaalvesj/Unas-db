@@ -19,5 +19,20 @@ def get_pessoas():
         pessoas.append({'id': row[0], 'projeto': row[1], 'nome': row[2], 'idade': row[3]})
     return jsonify(pessoas)
 
+@app.route('/cca', methods=['GET'])
+def get_cca():
+    nome_termo = request.args.get('cca', default=None, type=str)
+
+    query = "SELECT * FROM Tabela_UNAS"
+    rows = query_db(query)
+
+    cca = []
+    for row in rows:
+        if nome_termo is None or nome_termo.lower() in row[1].lower():
+            cca.append({'id': row[0], 'nome': row[1], 'data_nascimento': row[2]})
+
+    return jsonify(cca)
+
+
 if __name__ == '__main__':
     app.run(debug=True)
