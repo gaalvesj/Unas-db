@@ -33,6 +33,19 @@ def get_cca():
 
     return jsonify(cca)
 
+@app.route('/cei', methods=['GET'])
+def get_cei():
+    nome_termo = request.args.get('cei', default=None, type=str)
+
+    query = "SELECT * FROM Tabela_UNAS"
+    rows = query_db(query)
+
+    cei = []
+    for row in rows:
+        if nome_termo is None or nome_termo.lower() in row[1].lower():
+            cei.append({'id': row[0], 'projeto': row[1], 'nome': row[2]})
+
+    return jsonify(cei)
 
 if __name__ == '__main__':
     app.run(debug=True)
